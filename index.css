@@ -70,3 +70,7 @@
     justify-content: right;
     align-self: center;
 }
+
+#searchLoader {
+    color: rgb(255, 193, 7);
+}
