@@ -12,7 +12,10 @@ init();
 async function getMovieHandler() {
     try {
         showLoader();
-        const result = await getMovie(DOM.searchInput.value);
+        let result = await getMovie(DOM.searchInput.value);
+        // if (result === undefined) {
+        //     result = await getMovie(window.localStorage.getItem("search"));
+        // }
         for (let index = 0; index < result.length; index++) {
             const element = result[index];
             const movies = element.Title;
@@ -21,7 +24,8 @@ async function getMovieHandler() {
             drawMovies(movies, poster, id);
         }
 
-        DOM.searchInput.value = ""
+        // window.localStorage.setItem("search", DOM.searchInput.value);
+        // DOM.searchInput.value = ""
     } catch (error) {
         console.log(error);
         DOM.searchInput.value = ""
@@ -34,8 +38,6 @@ async function getMovieHandler() {
         removeLoader();
     }
 }
-
-
 
 
 function drawMovies(title, poster, id) {
@@ -53,7 +55,7 @@ function drawMovies(title, poster, id) {
     DOM.content.append(div);
 }
 
-function drawMoviesWithPlot(title, poster, plot) {
+function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director) {
     const div = document.createElement("div")
     div.classList.add("contentDivWithPlot")
     const firstdiv = document.createElement("div");
@@ -61,20 +63,31 @@ function drawMoviesWithPlot(title, poster, plot) {
     const secondDiv = document.createElement("div")
     const h4 = document.createElement("h4");
     h4.innerText = title;
-    const p = document.createElement("p");
-    p.innerText = plot;
-    const backButton = document.createElement("button")
+    const plots = document.createElement("p");
+    plots.innerText = plot;
+    const movieYear = document.createElement("p");
+    movieYear.innerText = year;
+    const time = document.createElement("p");
+    time.innerText = runTime;
+    const genres = document.createElement("p");
+    genres.innerText = genre;
+    const directors = document.createElement("p");
+    directors.innerText = director;
+    const backButtonDiv = document.createElement("div");
+    backButtonDiv.classList.add("backButtonDiv")
+    const backButton = document.createElement("button");
     backButton.classList.add("btn", "btn-secondary")
     backButton.innerText = "Back to page"
-    backButton.addEventListener("click", function() {
+    backButton.addEventListener("click", function () {
         div.innerHTML = ""
         div.classList.remove("contentDivWithPlot")
+        getMovieHandler()
     })
 
-
     firstdiv.append(img);
-    secondDiv.append(h4, p)
-    div.append(firstdiv, secondDiv, backButton)
+    secondDiv.append(h4, movieYear, time, genres, directors, plots)
+    backButtonDiv.append(backButton)
+    div.append(firstdiv, secondDiv, backButtonDiv)
     DOM.content.append(div);
 }
 
@@ -84,9 +97,13 @@ async function getMovieDescription(movieDiv) {
         const result = await getMovieId(movieDiv.currentTarget.id);
         const movies = result.Title;
         const poster = result.Poster;
-        const plot = result.Plot;
+        const plot = `Plot : ${result.Plot}`;
+        const year = result.Year
+        const time = `Runtime : ${result.Runtime}`
+        const genre = `Genre : ${result.Genre}`
+        const director = `Director : ${result.Director}`
 
-        drawMoviesWithPlot(movies, poster, plot);
+        drawMoviesWithPlot(movies, poster, plot, year, time, genre, director);
 
     } catch (error) {
         console.log(error);
