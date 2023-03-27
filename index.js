@@ -61,6 +61,7 @@ function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director)
     const firstdiv = document.createElement("div");
     const img = getImg(poster);
     const secondDiv = document.createElement("div")
+    secondDiv.classList.add("secondDiv")
     const h4 = document.createElement("h4");
     h4.innerText = title;
     const plots = document.createElement("p");
@@ -76,7 +77,8 @@ function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director)
     const backButtonDiv = document.createElement("div");
     backButtonDiv.classList.add("backButtonDiv")
     const backButton = document.createElement("button");
-    backButton.classList.add("btn", "btn-secondary")
+    backButton.classList.add("btn", "btn-warning")
+    backButton.id = "backBtn"
     backButton.innerText = "Back to page"
     backButton.addEventListener("click", function () {
         div.innerHTML = ""

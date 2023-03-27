@@ -23,6 +23,7 @@
 
 .contentDivWithPlot {
     display: flex;
+    flex-direction: row;
     text-align: left;
     gap: 2%;
     margin-top: 2%;
@@ -37,7 +38,9 @@
     width: 100%;
 }
 
-
+.contentDivWithPlot:first-child {
+    width: 100%;
+}
 
 .contents {
     display: flex;
@@ -73,4 +76,12 @@
 
 #searchLoader {
     color: rgb(255, 193, 7);
+}
+
+#backBtn {
+    font-family: 'Russo One', sans-serif;
+}
+
+.secondDiv {
+    width: 67%;
 }
