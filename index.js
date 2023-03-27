@@ -1,13 +1,20 @@
 const DOM = {
     searchInput: document.querySelector("#searchInput"),
     searchButton: document.querySelector("#searchButton"),
+    clearButton: document.querySelector("#clearButton"),
     content: document.querySelector("#content"),
 }
 
 function init() {
     DOM.searchButton.addEventListener("click", getMovieHandler)
+    DOM.clearButton.addEventListener("click", clearAll)
 }
 init();
+
+function clearAll() {
+    DOM.content.innerHTML = ""
+    DOM.searchInput.value = ""
+}
 
 async function getMovieHandler() {
     try {
@@ -55,7 +62,7 @@ function drawMovies(title, poster, id) {
     DOM.content.append(div);
 }
 
-function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director) {
+function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director, rating) {
     const div = document.createElement("div")
     div.classList.add("contentDivWithPlot")
     const firstdiv = document.createElement("div");
@@ -74,6 +81,8 @@ function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director)
     genres.innerText = genre;
     const directors = document.createElement("p");
     directors.innerText = director;
+    const ratings = document.createElement("p");
+    ratings.innerText = rating;
     const backButtonDiv = document.createElement("div");
     backButtonDiv.classList.add("backButtonDiv")
     const backButton = document.createElement("button");
@@ -87,7 +96,7 @@ function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director)
     })
 
     firstdiv.append(img);
-    secondDiv.append(h4, movieYear, time, genres, directors, plots)
+    secondDiv.append(h4, movieYear, ratings, time, genres, directors, plots)
     backButtonDiv.append(backButton)
     div.append(firstdiv, secondDiv, backButtonDiv)
     DOM.content.append(div);
@@ -104,8 +113,9 @@ async function getMovieDescription(movieDiv) {
         const time = `Runtime : ${result.Runtime}`
         const genre = `Genre : ${result.Genre}`
         const director = `Director : ${result.Director}`
+        const rating = `Rating : ${result.imdbRating}`
 
-        drawMoviesWithPlot(movies, poster, plot, year, time, genre, director);
+        drawMoviesWithPlot(movies, poster, plot, year, time, genre, director, rating);
 
     } catch (error) {
         console.log(error);

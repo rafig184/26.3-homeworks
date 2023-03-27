@@ -1,3 +1,7 @@
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .body {
     background-color: black;
 }
@@ -77,6 +81,12 @@
 
 #searchLoader {
     color: rgb(255, 193, 7);
+    position: absolute;
+    left: 48%;
+    top: 35%;
+    z-index: 1000;
+    height: 60px;
+    width: 60px;
 }
 
 #backBtn {
