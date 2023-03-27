@@ -1,0 +1,41 @@
+.contentDiv {
+    text-align: center;
+    margin-top: 2%;
+    background-color: gainsboro;
+    border: 1px solid black;
+    margin-left: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+}
+
+.contentDivWithPlot{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 2%;
+    background-color: gainsboro;
+    border: 1px solid black;
+    margin-left: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+}
+
+.contents {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding-top: 2%;
+}
+
+.controllers{
+
+    justify-content: center;
+    padding-left: 20%;
+    padding-right: 20%
+}
+
+.h1{
+    text-align: center;
+}
