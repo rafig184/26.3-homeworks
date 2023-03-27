@@ -7,11 +7,11 @@ const DOM = {
 
 function init() {
     DOM.searchButton.addEventListener("click", getMovieHandler)
-    DOM.clearButton.addEventListener("click", clearAll)
+    DOM.clearButton.addEventListener("click", clearAllButton)
 }
 init();
 
-function clearAll() {
+function clearAllButton() {
     DOM.content.innerHTML = ""
     DOM.searchInput.value = ""
 }
@@ -38,7 +38,7 @@ async function getMovieHandler() {
         DOM.searchInput.value = ""
         swal({
             title: "Something went wrong!",
-            text: "Contact admin",
+            text: "Movie not found",
             icon: "error",
         });
     } finally {
