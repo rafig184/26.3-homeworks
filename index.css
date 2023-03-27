@@ -4,6 +4,8 @@ body::-webkit-scrollbar {
 
 .body {
     background-color: black;
+    background-image: url(/assets/background.jpg);
+    background-size: 100%;
 }
 
 .form-label {
@@ -15,7 +17,7 @@ body::-webkit-scrollbar {
     text-align: center;
     margin-top: 2%;
     background-color: rgb(132, 131, 131);
-    border: 1px solid black;
+    border: 0px;
     margin-left: 1%;
     padding-left: 1%;
     padding-right: 1%;
@@ -32,7 +34,7 @@ body::-webkit-scrollbar {
     gap: 2%;
     margin-top: 2%;
     background-color: gainsboro;
-    border: 1px solid black;
+    border: 0px;
     margin-left: 1%;
     padding-left: 1%;
     padding-right: 1%;
