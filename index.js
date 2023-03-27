@@ -54,15 +54,27 @@ function drawMovies(title, poster, id) {
 }
 
 function drawMoviesWithPlot(title, poster, plot) {
-    const div = document.createElement("div");
+    const div = document.createElement("div")
     div.classList.add("contentDivWithPlot")
+    const firstdiv = document.createElement("div");
     const img = getImg(poster);
+    const secondDiv = document.createElement("div")
     const h4 = document.createElement("h4");
     h4.innerText = title;
     const p = document.createElement("p");
     p.innerText = plot;
+    const backButton = document.createElement("button")
+    backButton.classList.add("btn", "btn-secondary")
+    backButton.innerText = "Back to page"
+    backButton.addEventListener("click", function() {
+        div.innerHTML = ""
+        div.classList.remove("contentDivWithPlot")
+    })
 
-    div.append(img, h4, p);
+
+    firstdiv.append(img);
+    secondDiv.append(h4, p)
+    div.append(firstdiv, secondDiv, backButton)
     DOM.content.append(div);
 }
 
@@ -70,7 +82,6 @@ async function getMovieDescription(movieDiv) {
     try {
         showLoader();
         const result = await getMovieId(movieDiv.currentTarget.id);
-
         const movies = result.Title;
         const poster = result.Poster;
         const plot = result.Plot;

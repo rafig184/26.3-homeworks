@@ -7,12 +7,12 @@
     padding-left: 1%;
     padding-right: 1%;
     padding-top: 1%;
+    cursor: pointer;
 }
 
 .contentDivWithPlot{
     display: flex;
-    flex-wrap: wrap;
-    text-align: center;
+    text-align: left;
     margin-top: 2%;
     background-color: gainsboro;
     border: 1px solid black;
@@ -20,6 +20,7 @@
     padding-left: 1%;
     padding-right: 1%;
     padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 .contents {
@@ -30,7 +31,6 @@
 }
 
 .controllers{
-
     justify-content: center;
     padding-left: 20%;
     padding-right: 20%
