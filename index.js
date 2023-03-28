@@ -20,9 +20,6 @@ async function getMovieHandler() {
     try {
         showLoader();
         let result = await getMovie(DOM.searchInput.value);
-        // if (result === undefined) {
-        //     result = await getMovie(window.localStorage.getItem("search"));
-        // }
         for (let index = 0; index < result.length; index++) {
             const element = result[index];
             const movies = element.Title;
@@ -31,14 +28,39 @@ async function getMovieHandler() {
             drawMovies(movies, poster, id);
         }
 
-        // window.localStorage.setItem("search", DOM.searchInput.value);
-        // DOM.searchInput.value = ""
     } catch (error) {
         console.log(error);
         DOM.searchInput.value = ""
         swal({
             title: "Something went wrong!",
             text: "Movie not found",
+            icon: "error",
+        });
+    } finally {
+        removeLoader();
+    }
+}
+
+async function getMovieDescription(movieDiv) {
+    try {
+        showLoader();
+        const result = await getMovieId(movieDiv.currentTarget.id);
+        const movies = result.Title;
+        const poster = result.Poster;
+        const plot = `Plot : ${result.Plot}`;
+        const year = result.Year
+        const time = `Runtime : ${result.Runtime}`
+        const genre = `Genre : ${result.Genre}`
+        const director = `Director : ${result.Director}`
+        const rating = `Rating : ${result.imdbRating}`
+
+        drawMoviesWithPlot(movies, poster, plot, year, time, genre, director, rating);
+
+    } catch (error) {
+        console.log(error);
+        swal({
+            title: "Something went wrong!",
+            text: "Contact admin",
             icon: "error",
         });
     } finally {
@@ -102,32 +124,7 @@ function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director,
     DOM.content.append(div);
 }
 
-async function getMovieDescription(movieDiv) {
-    try {
-        showLoader();
-        const result = await getMovieId(movieDiv.currentTarget.id);
-        const movies = result.Title;
-        const poster = result.Poster;
-        const plot = `Plot : ${result.Plot}`;
-        const year = result.Year
-        const time = `Runtime : ${result.Runtime}`
-        const genre = `Genre : ${result.Genre}`
-        const director = `Director : ${result.Director}`
-        const rating = `Rating : ${result.imdbRating}`
 
-        drawMoviesWithPlot(movies, poster, plot, year, time, genre, director, rating);
-
-    } catch (error) {
-        console.log(error);
-        swal({
-            title: "Something went wrong!",
-            text: "Contact admin",
-            icon: "error",
-        });
-    } finally {
-        removeLoader();
-    }
-}
 
 
 async function getMovie(title) {
