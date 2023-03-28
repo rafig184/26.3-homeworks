@@ -27,7 +27,6 @@ async function getMovieHandler() {
             const id = element.imdbID;
             drawMovies(movies, poster, id);
         }
-
     } catch (error) {
         console.log(error);
         DOM.searchInput.value = ""
@@ -123,8 +122,6 @@ function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director,
     div.append(firstdiv, secondDiv, backButtonDiv)
     DOM.content.append(div);
 }
-
-
 
 
 async function getMovie(title) {
