@@ -86,8 +86,12 @@ function drawMovies(title, poster, id) {
 function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director, rating) {
     const div = document.createElement("div")
     div.classList.add("contentDivWithPlot")
-    const firstdiv = document.createElement("div");
+    const firstDiv = document.createElement("div");
     const img = getImg(poster);
+    img.classList.add("img")
+    img.addEventListener("click", () => {
+        openPopUp(poster)
+    })
     const secondDiv = document.createElement("div")
     secondDiv.classList.add("secondDiv")
     const h4 = document.createElement("h4");
@@ -104,6 +108,7 @@ function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director,
     directors.innerText = director;
     const ratings = document.createElement("p");
     ratings.innerText = rating;
+
     const backButtonDiv = document.createElement("div");
     backButtonDiv.classList.add("backButtonDiv")
     const backButton = document.createElement("button");
@@ -116,10 +121,10 @@ function drawMoviesWithPlot(title, poster, plot, year, runTime, genre, director,
         getMovieHandler()
     })
 
-    firstdiv.append(img);
+    firstDiv.append(img);
     secondDiv.append(h4, movieYear, ratings, time, genres, directors, plots)
     backButtonDiv.append(backButton)
-    div.append(firstdiv, secondDiv, backButtonDiv)
+    div.append(firstDiv, secondDiv, backButtonDiv)
     DOM.content.append(div);
 }
 
